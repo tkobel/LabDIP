@@ -18,15 +18,9 @@ public class BaggageServiceTipCalculator implements TipCalculator{
             "bag count must be greater than or equal to zero";
     private static final String BASE_TIP_ERR = 
             "error: base tip must be greater than or equal to zero";
-    private static double GOOD_RATE = 0.20;
-    private static double FAIR_RATE = 0.15;
-    private static double POOR_RATE = 0.10;
 
     private double baseTipPerBag;
     private int bagCount;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
-    }
     private ServiceQuality serviceQuality;
     
     public BaggageServiceTipCalculator(ServiceQuality q, int bags) {
@@ -62,6 +56,7 @@ public class BaggageServiceTipCalculator implements TipCalculator{
         serviceQuality = q;
     }
 
+    @Override
     public ServiceQuality getServiceQuality() {
         return serviceQuality;
     }

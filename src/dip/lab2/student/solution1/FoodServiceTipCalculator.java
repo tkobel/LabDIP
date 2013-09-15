@@ -9,14 +9,7 @@ public class FoodServiceTipCalculator implements TipCalculator {
     private static final double MIN_BILL = 0.00;
     private static final String BILL_ENTRY_ERR =
             "Error: bill must be greater than or equal to " + MIN_BILL;
-    private static double GOOD_RATE = 0.20;
-    private static double FAIR_RATE = 0.15;
-    private static double POOR_RATE = 0.10;
-
     private double bill;
-    public enum ServiceQuality {
-        GOOD, FAIR, POOR
-    }
     private ServiceQuality serviceQuality;
     
     public FoodServiceTipCalculator(ServiceQuality q, double billAmt) {
@@ -50,11 +43,16 @@ public class FoodServiceTipCalculator implements TipCalculator {
         bill = billAmt;
     }
 
+    /**
+     *
+     * @param q quality of service
+     */
     public final void setServiceRating(ServiceQuality q) {
         // No need to validate because enums provide type safety!
         serviceQuality = q;
     }
 
+    @Override
     public ServiceQuality getServiceQuality() {
         return serviceQuality;
     }
