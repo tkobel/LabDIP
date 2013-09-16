@@ -1,17 +1,33 @@
 package dip.lab1.student.solution1;
+
 /**
- * An implementation sub-class of an Employee. These are low-level classes
- * in the DIP. Does it meet the rules of DIP? If not fix it.
  *
- * @author Tracy Kobel
+ * @author Tracy
  */
-public class HourlyEmployee extends Employee {
+public class HourlyEmployee implements Employee {
+    
+    private double hourlyRate;
+    private double totalHrsForYear;
+    private final int MAX_HOURS_IN_A_YEAR = 8376;
+    
+    public HourlyEmployee(double hourlyRate, double totalHrsForYear) {
+        setHourlyRate(hourlyRate);
+        setTotalHrsForYear(totalHrsForYear);
+    }
+    
+    @Override
+    public double getAnnualWages() {
+        return hourlyRate * totalHrsForYear;
+    }
 
     public double getHourlyRate() {
         return hourlyRate;
     }
 
     public void setHourlyRate(double hourlyRate) {
+        if(hourlyRate < 0) {
+            throw new IllegalArgumentException();
+        }
         this.hourlyRate = hourlyRate;
     }
 
@@ -20,22 +36,10 @@ public class HourlyEmployee extends Employee {
     }
 
     public void setTotalHrsForYear(double totalHrsForYear) {
+        if(totalHrsForYear < 0 || totalHrsForYear > MAX_HOURS_IN_A_YEAR) {
+            throw new IllegalArgumentException();
+        }
         this.totalHrsForYear = totalHrsForYear;
     }
     
-    private double hourlyRate;
-    private double totalHrsForYear;
-    /** default constructor. Is this the best way to go? */
-    public HourlyEmployee() {}
-
-    /**
-     * Convenience constructor. Is this the best way to go?
-     * @param hourlyRate - the rate per hour that the employee is paid
-     * @param totalHrsForYear - total hours worked or predicted per year
-     */
-    public HourlyEmployee(double hourlyRate, double totalHrsForYear) {
-        setHourlyRate(hourlyRate);
-        setTotalHrsForYear(totalHrsForYear);
-    }
-
 }
