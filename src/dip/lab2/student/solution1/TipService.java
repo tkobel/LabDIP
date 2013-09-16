@@ -9,5 +9,11 @@ package dip.lab2.student.solution1;
  * @author Tracy
  */
 public class TipService {
+
+    public TipService() {
+    }
     
+    public double getTipAmount(TipCalculator tip) {
+        return tip.getTip();
+    }
 }
